@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity Finder Demo</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script defer src="./script.js"></script>
+    <style>
+        /* Mocking some Tistory generated classes if needed */
+        .tt_article_useless_p_margin p {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body id="tt-body-index">
+    <div class="desktop-background"
+        style="background-image: url('https://images.unsplash.com/photo-1621360841013-c768371e93cf?q=80&w=2548&auto=format&fit=crop');">
+        <div class="finder-window">
+            <!-- Toolbar -->
+            <header class="finder-toolbar">
+                <div class="toolbar-left">
+                    <div class="traffic-lights">
+                        <span class="light red"></span>
+                        <span class="light yellow"></span>
+                        <span class="light green"></span>
+                    </div>
+                    <div class="nav-buttons">
+                        <button class="nav-btn back"><i class="fas fa-chevron-left"></i></button>
+                        <button class="nav-btn forward"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="toolbar-title">
+                        <span class="folder-icon"><i class="fas fa-folder" style="color: #007aff;"></i></span>
+                        <span class="current-path">Antigravity</span>
+                    </div>
+                </div>
+
+                <div class="toolbar-center">
+                    <div class="view-toggles">
+                        <button class="view-btn list-view active" title="List View"><i class="fas fa-list"></i></button>
+                        <button class="view-btn gallery-view" title="Gallery View"><i
+                                class="fas fa-th-large"></i></button>
+                    </div>
+                </div>
+
+                <div class="toolbar-right">
+                    <span id="clock" class="toolbar-clock"></span>
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" placeholder="Search">
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="finder-body">
+                <!-- Sidebar -->
+                <aside class="finder-sidebar">
+                    <div class="sidebar-section">
+                        <!-- Mock Tistory Menu Output (Wrapper Test) -->
+                        <div class="menu-wrapper">
+                            <ul class="blog_menu">
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/notice">Notice</a></li>
+                                <li><a href="/tag">Tags</a></li>
+                                <li><a href="/guestbook">Guestbook</a></li>
+                            </ul>
+                            <ul class="sidebar-list">
+                                <li><a href="/manage/entry/post">New Post</a></li>
+                                <li><a href="/manage">Manager</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Categories</h3>
+                        <!-- Mock Category List -->
+                        <ul class="tt_category">
+                            <li><a href="#" class="link_item">Development (12)</a></li>
+                            <li><a href="#" class="link_item">Design (8)</a></li>
+                            <li><a href="#" class="link_item">Daily (5)</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">Info</h3>
+                        <div class="blog-profile">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                alt="Profile" class="profile-img">
+                            <span class="profile-name">Antigravity User</span>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="finder-content" id="mainContent">
+
+                    <!-- Mock List View Group -->
+                    <div class="list-view-group">
+                        <div class="content-header">
+                            <span class="col-name">Name</span>
+                            <span class="col-date">Date</span>
+                            <span class="col-category">Kind</span>
+                        </div>
+                        <div class="post-list-container">
+                            <!-- Item 1 -->
+                            <div class="finder-file-row">
+                                <div class="file-name">
+                                    <a href="#" onclick="document.body.id='tt-body-page'; return false;">
+                                        <span class="file-icon">📝</span>
+                                        <span class="file-title">How to create a Tistory Skin</span>
+                                    </a>
+                                    <span class="file-summary">This is a summary of the article about creating a Tistory
+                                        skin using HTML and CSS.</span>
+                                </div>
+                                <div class="file-date">2023.10.25</div>
+                                <div class="file-category">Development</div>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="finder-file-row">
+                                <div class="file-name">
+                                    <a href="#" onclick="document.body.id='tt-body-page'; return false;">
+                                        <span class="file-icon">🎨</span>
+                                        <span class="file-title">Understanding Glassmorphism</span>
+                                    </a>
+                                    <span class="file-summary">Glassmorphism is a design trend that uses transparency
+                                        and
+                                        background blur...</span>
+                                </div>
+                                <div class="file-date">2023.11.02</div>
+                                <div class="file-category">Design</div>
+                            </div>
+                            <!-- Item 3 -->
+                            <div class="finder-file-row">
+                                <div class="file-name">
+                                    <a href="#" onclick="document.body.id='tt-body-page'; return false;">
+                                        <span class="file-icon">💻</span>
+                                        <span class="file-title">MacBook Pro M3 Review <img
+                                                src="https://tistory1.daumcdn.net/tistory/2942339/skin/images/new.gif"
+                                                alt="N"
+                                                style="vertical-align:middle; width: 14px; height: 14px;"></span>
+                                    </a>
+                                    <span class="file-summary">A detailed review of the new MacBook Pro with M3 chip.
+                                        Performance is incredible.</span>
+                                </div>
+                                <div class="file-date">2023.11.10</div>
+                                <div class="file-category">Review</div>
+                            </div>
+                            <!-- Item 4 -->
+                            <div class="finder-file-row">
+                                <div class="file-name">
+                                    <a href="#" onclick="document.body.id='tt-body-page'; return false;">
+                                        <span class="file-icon">📝</span>
+                                        <span class="file-title">CSS Grid vs Flexbox</span>
+                                    </a>
+                                    <span class="file-summary">When to use Grid and when to use Flexbox in modern web
+                                        development.</span>
+                                </div>
+                                <div class="file-date">2023.11.15</div>
+                                <div class="file-category">Development</div>
+                            </div>
+                        </div>
+
+                        <!-- Mock Paging -->
+                        <div class="pagination">
+                            <a class="page-link prev">Previous</a>
+                            <span class="page-num">
+                                <a class="page-link selected">1</a>
+                                <a class="page-link">2</a>
+                                <a class="page-link">3</a>
+                            </span>
+                            <a class="page-link next">Next</a>
+                        </div>
+                    </div>
+
+                    <!-- Mock Article View (Initially Hidden via CSS if body id is tt-body-index) -->
+                    <div class="article-wrapper">
+                        <div class="article-header">
+                            <h1 class="article-title">How to create a Tistory Skin</h1>
+                            <div class="article-meta">
+                                <span class="date">2023.10.25</span>
+                                <span class="category">Development</span>
+                            </div>
+                        </div>
+
+                        <div class="article-body">
+                            <p>This is a demo article content. You can write anything here.</p>
+                            <p>To go back to the list, click the Back button in the toolbar. (Note: in this static demo,
+                                you would need to reloading or use browser back if not implemented via JS)</p>
+                            <button onclick="document.body.id='tt-body-index'; return false;"
+                                style="margin-top:20px; padding: 8px 16px;">Back to List (Demo Only)</button>
+                            <pre><code>console.log('Hello Tistory Skin!');</code></pre>
+                            <blockquote>
+                                "Design is not just what it looks like and feels like. Design is how it works."
+                            </blockquote>
+                        </div>
+
+                        <div class="article-footer">
+                            <div class="tag-list">
+                                <a href="#" class="tag-link">#HTML</a>
+                                <a href="#" class="tag-link">#CSS</a>
+                            </div>
+                        </div>
+
+                        <div class="comments-section">
+                            <h3>Comments</h3>
+                            <div class="comment-list">
+                                <div class="comment-item">
+                                    <span class="name">Visitor</span>
+                                    <span class="desc">Nice skin!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </main>
+
+                <!-- Status Bar -->
+                <footer class="finder-statusbar">
+                    <span class="item-count">4 items</span>
+                    <span class="disk-space">100 GB Available</span>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<skin>
+	<information>
+		<name>Antigravity Finder</name>
+		<version>1.0</version>
+		<description>macOS Finder Style Tistory Skin by Antigravity</description>
+		<license>MIT</license>
+	</information>
+	<author>
+		<name>Antigravity</name>
+		<homepage>https://tistory.com</homepage>
+		<email></email>
+	</author>
+	<default>
+		<recentEntries>5</recentEntries>
+		<recentComments>5</recentComments>
+		<recentTrackbacks>5</recentTrackbacks>
+		<itemsOnPage>10</itemsOnPage>
+		<itemsOnPageList>10</itemsOnPageList>
+		<tree>
+			<color>000000</color>
+			<bgColor>ffffff</bgColor>
+			<activeColor>000000</activeColor>
+			<activeBgColor>e5e5e5</activeBgColor>
+			<labelLength>27</labelLength>
+			<showValue>1</showValue>
+		</tree>
+		<contentWidth>800</contentWidth>
+	</default>
+    <variables>
+        <variable>
+            <name>twitter_id</name>
+            <label>Twitter ID</label>
+            <description>Enter your Twitter ID (without @)</description>
+            <type>TEXT</type>
+        </variable>
+        <variable>
+            <name>github_id</name>
+            <label>GitHub ID</label>
+            <description>Enter your GitHub ID</description>
+            <type>TEXT</type>
+        </variable>
+    </variables>
+</skin>

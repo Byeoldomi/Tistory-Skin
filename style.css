@@ -1,0 +1,1095 @@
+/* Global variables */
+:root {
+    --bg-desktop: #f5f5f7;
+    /* macOS desktop background */
+    --win-bg: rgba(255, 255, 255, 0.85);
+    --win-border: #d1d1d6;
+    --win-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+
+    --toolbar-bg: rgba(245, 245, 245, 0.95);
+    --sidebar-bg: rgba(240, 240, 245, 0.5);
+    --content-bg: #ffffff;
+
+    --text-primary: #1d1d1f;
+    --text-secondary: #86868b;
+    --accent-color: #007aff;
+    /* macOS Blue */
+
+    --hover-bg: #e5e5ea;
+    --selection-bg: #b3d7ff;
+
+    --font-stack: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+    --bg-desktop: #1e1e1e;
+    --win-bg: rgba(40, 40, 40, 0.85);
+    --win-border: #4d4d4d;
+    --win-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+
+    --toolbar-bg: rgba(50, 50, 50, 0.95);
+    --sidebar-bg: rgba(30, 30, 30, 0.5);
+    --content-bg: #1c1c1c;
+
+    --text-primary: #f5f5f7;
+    --text-secondary: #a1a1a6;
+
+    --hover-bg: #3a3a3c;
+    --selection-bg: #0a84ff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: var(--bg-desktop);
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+    list-style: none;
+}
+
+/* Desktop Background - Hidden/Reset for Full Screen */
+.desktop-background {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: none !important;
+    /* Override inline styles in demo */
+}
+
+.finder-window {
+    width: 100%;
+    height: 100%;
+    background: var(--win-bg);
+    backdrop-filter: blur(20px);
+    border: none;
+    /* No border for full screen */
+    border-radius: 0;
+    /* No radius */
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    animation: windowFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes windowFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Toolbar */
+.finder-toolbar {
+    height: 52px;
+    background: var(--toolbar-bg);
+    border-bottom: 1px solid var(--win-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    -webkit-app-region: drag;
+    /* Electron-like drag feel if supported */
+}
+
+.toolbar-left,
+.toolbar-center,
+.toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.toolbar-left {
+    min-width: 200px;
+}
+
+.toolbar-clock {
+    font-size: 13px;
+    font-weight: 500;
+    font-feature-settings: "tnum";
+    color: var(--text-primary);
+    margin-right: 8px;
+}
+
+/* Traffic Lights */
+.traffic-lights {
+    display: flex;
+    gap: 8px;
+    margin-right: 16px;
+}
+
+.light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.light.red {
+    background: #ff5f57;
+    border: 1px solid #e0443e;
+}
+
+.light.yellow {
+    background: #febc2e;
+    border: 1px solid #dba642;
+}
+
+.light.green {
+    background: #28c840;
+    border: 1px solid #1aab29;
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+    display: flex;
+    background: transparent;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.nav-btn:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-primary);
+}
+
+/* Breadcrumb / Title */
+.folder-icon {
+    font-size: 16px;
+    margin-right: 6px;
+}
+
+.current-path {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+/* View Toggles */
+.view-toggles {
+    display: flex;
+    background: rgba(118, 118, 128, 0.12);
+    border-radius: 6px;
+    padding: 2px;
+}
+
+.view-btn {
+    background: transparent;
+    border: none;
+    padding: 4px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: var(--text-secondary);
+}
+
+.view-btn.active {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .view-btn.active {
+    background: rgba(99, 99, 102, 0.6);
+}
+
+/* Search Box */
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    background: rgba(118, 118, 128, 0.12);
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px 6px 30px;
+    font-size: 13px;
+    width: 150px;
+    color: var(--text-primary);
+    transition: width 0.2s;
+}
+
+.search-box input:focus {
+    width: 200px;
+    outline: 2px solid var(--accent-color);
+}
+
+.search-icon {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.theme-toggle:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-primary);
+}
+
+/* Body Layout */
+.finder-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.finder-sidebar {
+    width: 220px;
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(40px);
+    /* Heavy blur for sidebar */
+    border-right: 1px solid var(--win-border);
+    padding: 20px 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    font-size: 13px;
+}
+
+.sidebar-section {
+    margin-bottom: 24px;
+    padding: 0 10px;
+}
+
+.sidebar-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    padding-left: 10px;
+    text-transform: uppercase;
+}
+
+/* Tistory Category List Styling */
+.tt_category,
+.blog_menu,
+.tt_menu,
+.menu-wrapper ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.blog_menu li,
+.tt_menu li,
+.menu-wrapper ul li,
+.menu-wrapper li {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 2px !important;
+    /* Match Category LI margin */
+}
+
+.tt_category li {
+    list-style: none;
+    margin-bottom: 2px;
+}
+
+.tt_category li a {
+    display: flex !important;
+    /* Override Tistory defaults */
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 13px;
+    /* Match Menu Line Height */
+    transition: background-color 0.15s;
+}
+
+.tt_category li a:hover {
+    background-color: var(--hover-bg);
+}
+
+.tt_category li a .c_cnt {
+    /* Count number */
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-left: auto;
+    /* Push to right */
+}
+
+.tt_category li a::before {
+    content: '\f07b';
+    /* FontAwesome Folder Icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 14px;
+    margin-right: 8px;
+    opacity: 0.8;
+    color: var(--accent-color);
+    /* Optional: make folders blue like Finder */
+    width: 24px !important;
+    height: 24px !important;
+    flex: 0 0 24px !important;
+    /* Prevent shrinking */
+    box-sizing: border-box !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* Subcategories */
+.tt_category .sub_category_list {
+    margin-left: 20px;
+    padding-left: 0;
+    margin-top: 2px;
+    border-left: 1px solid var(--win-border);
+    /* Tree line hint */
+}
+
+.tt_category .sub_category_list li a {
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+.tt_category .sub_category_list li a::before {
+    content: '\f148';
+    /* FontAwesome Level Up/Subdirectory Arrow */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 12px;
+    margin-right: 6px;
+    opacity: 0.8;
+    color: var(--text-secondary);
+}
+
+.sidebar-list li a,
+.blog_menu li a,
+.tt_menu li a,
+.menu-wrapper ul li a,
+.menu-wrapper li a {
+    /* Tistory uses .blog_menu or .tt_menu usually */
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: var(--text-primary);
+    margin-bottom: 0;
+    transition: background-color 0.15s;
+    text-decoration: none;
+    /* Ensure no underline */
+    font-size: 13px;
+    /* Match Category Font Size */
+}
+
+/* Unified Hover Effects */
+/* Unified Hover Effects */
+.sidebar-list li a:hover,
+.blog_menu li a:hover,
+.tt_menu li a:hover,
+.menu-wrapper li a:hover,
+.menu-wrapper a:hover,
+.tt_category li a:hover,
+.sidebar-item a:hover {
+    background-color: var(--hover-bg) !important;
+    border-radius: 6px !important;
+    transition: background-color 0.15s ease !important;
+    text-decoration: none !important;
+}
+
+/* Explicit Active/Selected State Enforcement */
+.blog_menu li.selected a,
+.tt_menu li.selected a,
+.menu-wrapper li.selected a,
+.blog_menu li a.selected,
+.tt_menu li a.selected,
+.menu-wrapper li a.selected {
+    display: flex !important;
+    align-items: center !important;
+    padding: 6px 10px !important;
+    margin: 0 !important;
+    font-size: 13px !important;
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+}
+
+.blog_menu li.selected a::before,
+.tt_menu li.selected a::before,
+.menu-wrapper li.selected a::before,
+.blog_menu li a.selected::before,
+.tt_menu li a.selected::before,
+.menu-wrapper li a.selected::before {
+    margin-right: 8px !important;
+    width: 24px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 24px !important;
+}
+
+/* Custom manual items (if any left) */
+.sidebar-item a {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+    transition: background-color 0.15s;
+    text-decoration: none;
+}
+
+/* Icons for Tistory Menu Items (Attribute Selectors) */
+/* Icons for Tistory Menu Items (Attribute Selectors) */
+.sidebar-list li a::before,
+.blog_menu li a::before,
+.tt_menu li a::before,
+.menu-wrapper ul li a::before,
+.menu-wrapper li a::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 8px !important;
+    width: 24px !important;
+    height: 24px !important;
+    flex: 0 0 24px !important;
+    /* Prevent shrinking */
+    box-sizing: border-box !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-size: 14px;
+    opacity: 0.8;
+    color: var(--text-secondary);
+}
+
+/* Default Icon (Link) */
+.blog_menu li a::before,
+.tt_menu li a::before,
+.menu-wrapper ul li a::before,
+.menu-wrapper li a::before {
+    content: '\f0c1';
+    /* Link icon */
+}
+
+/* Home */
+.blog_menu li:first-child a::before,
+.tt_menu li:first-child a::before,
+.menu-wrapper ul li:first-child a::before,
+.menu-wrapper li:first-child a::before,
+.blog_menu li a[href="/"]::before,
+.tt_menu li a[href="/"]::before,
+.menu-wrapper ul li a[href="/"]::before,
+.menu-wrapper li a[href="/"]::before {
+    content: '\f015';
+    /* Home icon */
+}
+
+/* Notice */
+.blog_menu li a[href*="/notice"]::before,
+.tt_menu li a[href*="/notice"]::before,
+.menu-wrapper ul li a[href*="/notice"]::before,
+.menu-wrapper li a[href*="/notice"]::before {
+    content: '\f0a1';
+    /* Bullhorn icon */
+}
+
+/* Tags */
+.blog_menu li a[href*="/tag"]::before,
+.tt_menu li a[href*="/tag"]::before,
+.menu-wrapper ul li a[href*="/tag"]::before,
+.menu-wrapper li a[href*="/tag"]::before {
+    content: '\f02c';
+    /* Tags icon */
+}
+
+/* Guestbook */
+.blog_menu li a[href*="/guestbook"]::before,
+.tt_menu li a[href*="/guestbook"]::before,
+.menu-wrapper ul li a[href*="/guestbook"]::before,
+.menu-wrapper li a[href*="/guestbook"]::before {
+    content: '\f518';
+    /* Book Open icon */
+}
+
+/* New Post (Write) */
+#btn-new-post::before,
+.menu-wrapper .sidebar-list li a[href*="/entry/post"]::before,
+.sidebar-list li a[href*="/entry/post"]::before {
+    content: '\f303' !important;
+    /* Pencil icon */
+}
+
+/* Manager (Admin) */
+.sidebar-list li a[href$="/manage"]::before {
+    content: '\f013' !important;
+    /* Cog icon */
+}
+
+.sidebar-list li a:hover,
+.sidebar-item a:hover {
+    background-color: var(--hover-bg);
+}
+
+.sidebar-list li.selected>a,
+.sidebar-item.active a {
+    background-color: var(--hover-bg);
+    /* Or selection color if preferred */
+    font-weight: 500;
+}
+
+.icon {
+    margin-right: 8px;
+    width: 16px;
+    text-align: center;
+}
+
+/* Content Area */
+.finder-content {
+    flex: 1;
+    background: var(--content-bg);
+    overflow-y: auto;
+    padding: 0;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+/* List View (Default) */
+.content-header {
+    display: flex;
+    padding: 6px 16px;
+    border-bottom: 1px solid var(--win-border);
+    font-size: 12px;
+    color: var(--text-secondary);
+    position: sticky;
+    top: 0;
+    background: var(--content-bg);
+    z-index: 10;
+}
+
+.col-name {
+    flex: 4;
+}
+
+.col-date {
+    flex: 1;
+    min-width: 100px;
+}
+
+.col-category {
+    flex: 1;
+    min-width: 100px;
+}
+
+.post-list-container {
+    padding: 0;
+}
+
+.finder-file-row {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--win-border);
+    /* Optional: can serve as grid lines */
+    cursor: default;
+    /* Finder vibe */
+}
+
+.finder-file-row:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+    /* Zebra striping optional */
+}
+
+.finder-file-row:hover {
+    background-color: var(--hover-bg);
+    /* Selection feel */
+}
+
+.file-name {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-right: 12px;
+}
+
+.file-name a {
+    display: flex;
+    align-items: center;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.file-icon {
+    font-size: 20px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.file-title {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Hide 'new' post icons */
+.file-title img,
+.tt_category img {
+    display: none !important;
+}
+
+.file-summary {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-left: 30px;
+    /* Align under text */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 2px;
+    max-width: 90%;
+}
+
+.file-date,
+.file-category {
+    flex: 1;
+    min-width: 100px;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+/* Gallery View (Optional Implementation handled by JS class toggle) */
+.gallery-mode .post-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+    padding: 20px;
+}
+
+.gallery-mode .content-header,
+.gallery-mode .file-summary,
+.gallery-mode .file-date,
+.gallery-mode .file-category {
+    display: none;
+}
+
+.gallery-mode .finder-file-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+}
+
+.gallery-mode .finder-file-row:hover {
+    background-color: var(--selection-bg);
+}
+
+.gallery-mode .file-name {
+    padding-right: 0;
+    align-items: center;
+}
+
+.gallery-mode .file-name a {
+    flex-direction: column;
+}
+
+.gallery-mode .file-icon {
+    font-size: 48px;
+    margin-right: 0;
+    margin-bottom: 8px;
+}
+
+.gallery-mode .file-title {
+    white-space: normal;
+    font-size: 13px;
+    line-height: 1.4;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* Article Detail View */
+.article-wrapper {
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.article-header {
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--win-border);
+    padding-bottom: 20px;
+}
+
+.article-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.article-meta {
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    gap: 12px;
+}
+
+.article-body {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-primary);
+}
+
+.article-body img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+/* Code Styles */
+pre,
+code {
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+}
+
+pre {
+    background: #f0f0f0;
+    padding: 16px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+[data-theme="dark"] pre {
+    background: #2d2d2d;
+    color: #f8f8f2;
+}
+
+blockquote {
+    border-left: 4px solid var(--accent-color);
+    padding-left: 16px;
+    margin: 20px 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Status Bar */
+.finder-statusbar {
+    height: 28px;
+    background: var(--toolbar-bg);
+    border-top: 1px solid var(--win-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-secondary);
+    gap: 20px;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Blog Profile */
+.blog-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+    margin-top: 10px;
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--win-border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
+    transition: transform 0.2s;
+}
+
+.profile-img:hover {
+    transform: scale(1.05);
+}
+
+.profile-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: 20px;
+    gap: 8px;
+}
+
+.pagination a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    background: var(--content-bg);
+    border: 1px solid var(--win-border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 13px;
+    min-width: 32px;
+    transition: all 0.15s;
+    cursor: pointer;
+}
+
+.pagination a:hover {
+    background: var(--hover-bg);
+    border-color: var(--text-secondary);
+}
+
+.pagination .selected {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+    font-weight: 500;
+}
+
+.pagination .prev,
+.pagination .next {
+    font-weight: 500;
+}
+
+.pagination .prev::before {
+    content: "\f053";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 6px;
+    font-size: 11px;
+}
+
+.pagination .next::after {
+    content: "\f054";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-left: 6px;
+    font-size: 11px;
+}
+
+/* Hide if no more pages */
+.pagination .no-more-prev,
+.pagination .no-more-next {
+    opacity: 0.5;
+    pointer-events: none;
+    /* display: none; REMOVED to show disabled state */
+}
+
+/* Page Numbers container */
+.page-num {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* View Toggle based on Body ID */
+#tt-body-page .list-view-group,
+#tt-body-page .pagination {
+    display: none;
+}
+
+#tt-body-index .article-wrapper,
+#tt-body-category .article-wrapper,
+#tt-body-archive .article-wrapper,
+#tt-body-tag .article-wrapper,
+#tt-body-search .article-wrapper {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .finder-sidebar {
+        display: none;
+        /* Mobile hides sidebar initially */
+        position: absolute;
+        z-index: 100;
+        height: 100%;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .finder-sidebar.active {
+        display: flex;
+    }
+
+    .content-header {
+        display: none;
+        /* Hide headers on mobile lists usually */
+    }
+
+    .finder-file-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .col-name,
+    .col-date,
+    .col-category {
+        flex: auto;
+    }
+
+    .file-summary {
+        margin-left: 0;
+        margin-top: 6px;
+        white-space: normal;
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+    }
+}
+
+/* Tag Page Styling */
+.tag-log {
+    padding: 30px;
+}
+
+.tag-log h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--win-border);
+    padding-bottom: 15px;
+}
+
+.tag-log ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-log li {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.tag-log li a {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background-color: var(--hover-bg);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.tag-log li a:hover {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Force Hover Effects on Tistory Menu */
+#tt-body-index .menu-wrapper a:hover,
+#tt-body-page .menu-wrapper a:hover,
+#tt-body-archive .menu-wrapper a:hover,
+#tt-body-search .menu-wrapper a:hover,
+#tt-body-tag .menu-wrapper a:hover,
+#blog_menu li a:hover,
+#tt_menu li a:hover,
+.blog_menu li a:hover,
+.tt_menu li a:hover,
+.finder-sidebar .menu-wrapper a:hover,
+.finder-sidebar .menu-wrapper ul li a:hover,
+.finder-sidebar .menu-wrapper li a:hover,
+.menu-wrapper ul li a:hover,
+.menu-wrapper li a:hover,
+.menu-wrapper a:hover {
+    background-color: var(--hover-bg) !important;
+    border-radius: 6px !important;
+    transition: background-color 0.15s ease !important;
+    text-decoration: none !important;
+    color: var(--text-primary) !important;
+    width: 100% !important;
+    /* Ensure full click area */
+    display: flex !important;
+    /* Ensure flex layout */
+    pointer-events: auto !important;
+    /* Force interactivity */
+}

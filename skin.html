@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[##_page_title_##]</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script defer src="./images/script.js"></script>
+</head>
+
+<body id="[##_body_id_##]">
+    <s_t3>
+        <div class="desktop-background">
+            <div class="finder-window">
+                <!-- Toolbar -->
+                <header class="finder-toolbar">
+                    <div class="toolbar-left">
+                        <div class="traffic-lights">
+                            <span class="light red"></span>
+                            <span class="light yellow"></span>
+                            <span class="light green"></span>
+                        </div>
+                        <div class="nav-buttons">
+                            <button class="nav-btn back"><i class="fas fa-chevron-left"></i></button>
+                            <button class="nav-btn forward"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="toolbar-title">
+                            <span class="folder-icon"><i class="fas fa-folder" style="color: #007aff;"></i></span>
+                            <span class="current-path">[##_page_title_##]</span>
+                        </div>
+                    </div>
+
+                    <div class="toolbar-center">
+                        <div class="view-toggles">
+                            <button class="view-btn list-view active" title="List View"><i
+                                    class="fas fa-list"></i></button>
+                            <button class="view-btn gallery-view" title="Gallery View"><i
+                                    class="fas fa-th-large"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="toolbar-right">
+                        <span id="clock" class="toolbar-clock"></span>
+                        <div class="search-box">
+                            <s_search>
+                                <i class="fas fa-search search-icon"></i>
+                                <input type="text" name="[##_search_name_##]" value="[##_search_text_##]"
+                                    onkeypress="if (event.keyCode == 13) { window.location.href = '/search/' + encodeURIComponent(this.value); }"
+                                    placeholder="Search">
+                            </s_search>
+                        </div>
+                        <button class="theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="finder-body">
+                    <!-- Sidebar -->
+                    <aside class="finder-sidebar">
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title">Favorites</h3>
+                            <div class="menu-wrapper">
+                                [##_blog_menu_##]
+                                <ul class="sidebar-list">
+                                    <li><a href="[##_owner_url_##]/entry/post" id="btn-new-post">새 포스트</a></li>
+                                    <li><a href="[##_owner_url_##]">관리</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title">Categories</h3>
+                            [##_category_list_##]
+                        </div>
+
+                        <div class="sidebar-section">
+                            <h3 class="sidebar-title">Info</h3>
+                            <div class="blog-profile">
+                                <img src="[##_image_##]" alt="Blog Image" class="profile-img">
+                                <span class="profile-name">[##_blogger_##]</span>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Main Content -->
+                    <main class="finder-content" id="mainContent">
+
+                        <!-- List View (Default) -->
+                        <s_list>
+                            <div class="list-view-group">
+                                <div class="content-header">
+                                    <span class="col-name">Name</span>
+                                    <span class="col-date">Date</span>
+                                    <span class="col-category">Kind</span>
+                                </div>
+                                <div class="post-list-container">
+                                    <s_list_rep>
+                                        <div class="finder-file-row">
+                                            <div class="file-name">
+                                                <a href="[##_list_rep_link_##]">
+                                                    <span class="file-icon">📝</span>
+                                                    <span class="file-title">[##_list_rep_title_##]</span>
+                                                </a>
+                                                <span class="file-summary">[##_list_rep_summary_##]</span>
+                                            </div>
+                                            <div class="file-date">[##_list_rep_regdate_##]</div>
+                                            <div class="file-category">Document</div>
+                                        </div>
+                                    </s_list_rep>
+                                </div>
+                            </div>
+                        </s_list>
+
+                        <!-- Article View -->
+                        <s_article_rep>
+                            <div class="article-wrapper">
+                                <div class="article-header">
+                                    <h1 class="article-title">[##_article_rep_title_##]</h1>
+                                    <div class="article-meta">
+                                        <span class="date">[##_article_rep_date_##]</span>
+                                        <span class="category">[##_article_rep_category_##]</span>
+                                    </div>
+                                </div>
+
+                                <div class="article-body">
+                                    [##_article_rep_desc_##]
+                                </div>
+
+                                <div class="article-footer">
+                                    <s_tag_label>
+                                        <div class="tag-list">
+                                            [##_tag_label_rep_##]
+                                        </div>
+                                    </s_tag_label>
+                                </div>
+
+                                <s_rp>
+                                    <div class="comments-section">
+                                        <h3>Comments</h3>
+                                        [##_rp_rep_##]
+                                    </div>
+                                </s_rp>
+                            </div>
+                        </s_article_rep>
+
+                        <!-- Notice View -->
+                        <s_notice_rep>
+                            <div class="article-wrapper">
+                                <div class="article-header">
+                                    <h1 class="article-title">[##_notice_rep_title_##]</h1>
+                                    <div class="article-meta">
+                                        <span class="date">[##_notice_rep_date_##]</span>
+                                        <span class="category">Notice</span>
+                                    </div>
+                                </div>
+
+                                <div class="article-body">
+                                    [##_notice_rep_desc_##]
+                                </div>
+                            </div>
+                        </s_notice_rep>
+
+                        <!-- Paging -->
+                        <s_paging>
+                            <div class="pagination">
+                                <a [##_prev_page_##] class="page-link prev [##_no_more_prev_##]">Previous</a>
+                                <span class="page-num">
+                                    <s_paging_rep>
+                                        <a [##_paging_rep_link_##] class="page-link">[##_paging_rep_link_num_##]</a>
+                                    </s_paging_rep>
+                                </span>
+                                <a [##_next_page_##] class="page-link next [##_no_more_next_##]">Next</a>
+                            </div>
+                        </s_paging>
+
+                        <!-- Tag Cloud (Tag Page) -->
+                        <s_tag>
+                            <div class="tag-log">
+                                <h3>Tags</h3>
+                                <ul>
+                                    <s_tag_rep>
+                                        <li><a href="[##_tag_link_##]" class="[##_tag_class_##]">[##_tag_name_##]</a>
+                                        </li>
+                                    </s_tag_rep>
+                                </ul>
+                            </div>
+                        </s_tag>
+
+                    </main>
+                </div>
+
+                <!-- Status Bar -->
+                <footer class="finder-statusbar">
+                    <span class="item-count">Loading...</span>
+                    <span class="disk-space">Available</span>
+                </footer>
+            </div>
+        </div>
+    </s_t3>
+</body>
+
+</html>
