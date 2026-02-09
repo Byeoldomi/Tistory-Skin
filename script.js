@@ -193,17 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
         path.includes('demo.html')) { // Allow testing in demo.html
         document.body.classList.add('notice-list-view');
 
-        // Dynamic Header Injection
-        const container = document.querySelector('.notice-view-container');
-        if (container && !container.querySelector('.notice-list-header')) {
-            const header = document.createElement('div');
-            header.className = 'notice-list-header';
-            header.innerHTML = `
-                <span class="col-name">Name</span>
-                <span class="col-date">Date</span>
-                <span class="col-category">Kind</span>
-            `;
-            container.prepend(header); // Use prepend to guarantee top
-        }
+
     }
 });

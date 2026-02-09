@@ -1104,12 +1104,12 @@ blockquote {
     display: block !important;
 }
 
-/* Hide default list view elements in notice mode */
-body.notice-list-view .list-view-group,
+/* Hide default list view elements in notice mode - REMOVED for Unified List */
+/* body.notice-list-view .list-view-group,
 body.notice-list-view .content-header,
 body.notice-list-view .s_list_rep {
     display: none !important;
-}
+} */
 
 /* Notice List View */
 /* Default state: Hide list elements, Show detail elements */
@@ -1124,6 +1124,11 @@ body.notice-list-view .s_list_rep {
 }
 
 body.notice-list-view .notice-list-header {
+    display: none !important;
+}
+
+/* Default state: Hide custom header */
+.notice-custom-header {
     display: none !important;
 }
 
