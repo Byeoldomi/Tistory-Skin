@@ -72,12 +72,14 @@
                                 <li><a href="/tag">Tags</a></li>
                                 <li><a href="/guestbook">Guestbook</a></li>
                             </ul>
-                            <ul class="sidebar-list">
+                            <ul class="sidebar-list admin-only">
                                 <li><a href="/manage/entry/post">New Post</a></li>
                                 <li><a href="/manage">Manager</a></li>
                             </ul>
                         </div>
                     </div>
+
+
 
                     <div class="sidebar-section">
                         <h3 class="sidebar-title">Categories</h3>
@@ -180,45 +182,78 @@
                         </div>
                     </div>
 
-                    <!-- Mock Article View (Initially Hidden via CSS if body id is tt-body-index) -->
-                    <div class="article-wrapper">
-                        <div class="article-header">
-                            <h1 class="article-title">How to create a Tistory Skin</h1>
-                            <div class="article-meta">
-                                <span class="date">2023.10.25</span>
-                                <span class="category">Development</span>
+                    <!-- Mock Article View (Initially Hidden via CSS if body id is tt-body-index, but visible if notice-wrapper) -->
+
+                    <!-- Notice List Header -->
+
+
+                    <!-- Notice View Container -->
+                    <div class="notice-view-container">
+
+                        <div class="notice-list-container">
+                            <!-- Mock List Item -->
+                            <div class="notice-list-row">
+                                <div class="notice-list-top">
+                                    <div class="file-name">
+                                        <a href="#"
+                                            onclick="document.body.classList.remove('notice-list-view'); return false;"
+                                            class="notice-link">
+                                            <span class="file-icon">📢</span>
+                                            <span class="file-title">System Maintenance Notice</span>
+                                        </a>
+                                    </div>
+                                    <div class="file-date">2023.10.25</div>
+                                    <div class="file-category">Notice</div>
+                                </div>
+                                <div class="file-summary">Scheduled maintenance regarding server upgrade... <img src="#"
+                                        style="display:none"></div>
                             </div>
-                        </div>
 
-                        <div class="article-body">
-                            <p>This is a demo article content. You can write anything here.</p>
-                            <p>To go back to the list, click the Back button in the toolbar. (Note: in this static demo,
-                                you would need to reloading or use browser back if not implemented via JS)</p>
-                            <button onclick="document.body.id='tt-body-index'; return false;"
-                                style="margin-top:20px; padding: 8px 16px;">Back to List (Demo Only)</button>
-                            <pre><code>console.log('Hello Tistory Skin!');</code></pre>
-                            <blockquote>
-                                "Design is not just what it looks like and feels like. Design is how it works."
-                            </blockquote>
-                        </div>
+                            <div class="notice-wrapper">
+                                <div class="article-header">
+                                    <h1 class="article-title"><a href="#"
+                                            onclick="document.body.classList.remove('notice-list-view'); return false;">System
+                                            Maintenance Notice</a></h1>
+                                    <div class="article-meta">
+                                        <span class="date">2023.10.25</span>
+                                        <span class="category">Notice</span>
+                                    </div>
+                                </div>
 
-                        <div class="article-footer">
-                            <div class="tag-list">
-                                <a href="#" class="tag-link">#HTML</a>
-                                <a href="#" class="tag-link">#CSS</a>
-                            </div>
-                        </div>
+                                <div class="article-body">
+                                    <p>This is a demo article content. You can write anything here.</p>
+                                    <p>To go back to the list, click the Back button in the toolbar. (Note: in this
+                                        static
+                                        demo,
+                                        you would need to reloading or use browser back if not implemented via JS)</p>
+                                    <button onclick="document.body.id='tt-body-index'; return false;"
+                                        style="margin-top:20px; padding: 8px 16px;">Back to List (Demo Only)</button>
+                                    <pre><code>console.log('Hello Tistory Skin!');</code></pre>
+                                    <blockquote>
+                                        "Design is not just what it looks like and feels like. Design is how it works."
+                                    </blockquote>
+                                </div>
 
-                        <div class="comments-section">
-                            <h3>Comments</h3>
-                            <div class="comment-list">
-                                <div class="comment-item">
-                                    <span class="name">Visitor</span>
-                                    <span class="desc">Nice skin!</span>
+                                <div class="article-footer">
+                                    <div class="tag-list">
+                                        <a href="#" class="tag-link">#HTML</a>
+                                        <a href="#" class="tag-link">#CSS</a>
+                                    </div>
+                                </div>
+
+                                <div class="comments-section">
+                                    <h3>Comments</h3>
+                                    <div class="comment-list">
+                                        <div class="comment-item">
+                                            <span class="name">Visitor</span>
+                                            <span class="desc">Nice skin!</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+
+                        </div> <!-- End notice-list-container -->
+                    </div> <!-- End notice-view-container -->
 
                 </main>
 

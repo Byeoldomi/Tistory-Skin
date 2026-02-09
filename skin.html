@@ -66,12 +66,14 @@
                             <h3 class="sidebar-title">Favorites</h3>
                             <div class="menu-wrapper">
                                 [##_blog_menu_##]
-                                <ul class="sidebar-list">
+                                <ul class="sidebar-list admin-only">
                                     <li><a href="[##_owner_url_##]/entry/post" id="btn-new-post">새 포스트</a></li>
                                     <li><a href="[##_owner_url_##]">관리</a></li>
                                 </ul>
                             </div>
                         </div>
+
+
 
                         <div class="sidebar-section">
                             <h3 class="sidebar-title">Categories</h3>
@@ -149,21 +151,46 @@
                         </s_article_rep>
 
                         <!-- Notice View -->
-                        <s_notice_rep>
-                            <div class="article-wrapper">
-                                <div class="article-header">
-                                    <h1 class="article-title">[##_notice_rep_title_##]</h1>
-                                    <div class="article-meta">
-                                        <span class="date">[##_notice_rep_date_##]</span>
-                                        <span class="category">Notice</span>
-                                    </div>
-                                </div>
-
-                                <div class="article-body">
-                                    [##_notice_rep_desc_##]
-                                </div>
+                        <div class="notice-view-container">
+                            <!-- Custom Header for Notice List -->
+                            <div class="notice-custom-header">
+                                <span class="col-name">Name</span>
+                                <span class="col-date">Date</span>
+                                <span class="col-category">Kind</span>
                             </div>
-                        </s_notice_rep>
+
+                            <div class="notice-list-container">
+                                <s_notice_rep>
+                                    <!-- List Item View -->
+                                    <div class="notice-list-row">
+                                        <div class="notice-list-top">
+                                            <a href="[##_notice_rep_link_##]" class="notice-link">
+                                                <span class="col-name">📢 [##_notice_rep_title_##]</span>
+                                                <span class="col-date">[##_notice_rep_date_##]</span>
+                                                <span class="col-category">Notice</span>
+                                            </a>
+                                        </div>
+                                        <div class="file-summary">[##_notice_rep_desc_##]</div>
+                                    </div>
+
+                                    <!-- Detail View -->
+                                    <div class="notice-wrapper">
+                                        <div class="article-header">
+                                            <h1 class="article-title"><a href="[##_notice_rep_link_##]"
+                                                    class="notice-link">[##_notice_rep_title_##]</a></h1>
+                                            <div class="article-meta">
+                                                <span class="date">[##_notice_rep_date_##]</span>
+                                                <span class="category">Notice</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="article-body">
+                                            [##_notice_rep_desc_##]
+                                        </div>
+                                    </div>
+                                </s_notice_rep>
+                            </div>
+                        </div> <!-- End notice-view-container -->
 
                         <!-- Paging -->
                         <s_paging>
@@ -196,8 +223,8 @@
 
                 <!-- Status Bar -->
                 <footer class="finder-statusbar">
-                    <span class="item-count">Loading...</span>
-                    <span class="disk-space">Available</span>
+                    <span class="item-count"></span>
+                    <span class="disk-space"></span>
                 </footer>
             </div>
         </div>

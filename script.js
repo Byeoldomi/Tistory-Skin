@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if user is owner
+    if (window.T && window.T.config && window.T.config.ROLE === 'owner') {
+        document.body.classList.add('is-owner');
+    }
     // Theme Toggle
     const themeToggle = document.getElementById('themeToggle');
     const root = document.documentElement;
@@ -176,5 +180,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.classList.add('selected');
             }
         });
+    }
+
+    // Notice List vs Detail View Logic
+    const path = window.location.pathname;
+    // Check if we are on the main notice list page
+    // Patterns: /notice, /notice/, /notice?page=...
+    // But NOT /notice/123 (detail)
+    // Tistory notice list usually has path '/notice'
+    if (path === '/notice' ||
+        (path.startsWith('/notice') && isNaN(path.split('/').pop())) ||
+        path.includes('demo.html')) { // Allow testing in demo.html
+        document.body.classList.add('notice-list-view');
+
+        // Dynamic Header Injection
+        const container = document.querySelector('.notice-view-container');
+        if (container && !container.querySelector('.notice-list-header')) {
+            const header = document.createElement('div');
+            header.className = 'notice-list-header';
+            header.innerHTML = `
+                <span class="col-name">Name</span>
+                <span class="col-date">Date</span>
+                <span class="col-category">Kind</span>
+            `;
+            container.prepend(header); // Use prepend to guarantee top
+        }
     }
 });

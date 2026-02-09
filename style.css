@@ -755,7 +755,8 @@ li {
 }
 
 /* Article Detail View */
-.article-wrapper {
+.article-wrapper,
+.notice-wrapper {
     padding: 40px;
     max-width: 800px;
     margin: 0 auto;
@@ -1092,4 +1093,192 @@ blockquote {
     /* Ensure flex layout */
     pointer-events: auto !important;
     /* Force interactivity */
+}
+
+/* Admin Only Links */
+.admin-only {
+    display: none !important;
+}
+
+.is-owner .admin-only {
+    display: block !important;
+}
+
+/* Hide default list view elements in notice mode */
+body.notice-list-view .list-view-group,
+body.notice-list-view .content-header,
+body.notice-list-view .s_list_rep {
+    display: none !important;
+}
+
+/* Notice List View */
+/* Default state: Hide list elements, Show detail elements */
+.notice-list-header {
+    display: none !important;
+    grid-template-columns: 2fr 1fr 100px;
+    gap: 15px;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--win-border);
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+body.notice-list-view .notice-list-header {
+    display: none !important;
+}
+
+body.notice-list-view .notice-custom-header {
+    display: flex !important;
+    width: 100%;
+    /* Remove order - rely on DOM */
+    /* Match content-header styles */
+    padding: 6px 16px;
+    border-bottom: 1px solid var(--win-border);
+    font-size: 12px;
+    color: var(--text-secondary);
+    position: sticky;
+    top: 0;
+    background: var(--content-bg);
+    z-index: 10;
+}
+
+.notice-list-header {
+    /* Legacy cleanup: hide any old class if present */
+    display: none !important;
+}
+
+body.notice-list-view .notice-list-container {
+    /* Ensure container is below header naturally */
+    width: 100%;
+    /* Remove order */
+}
+
+.notice-link {
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+    padding: 8px 16px;
+    /* Match standard list item padding */
+    box-sizing: border-box;
+}
+
+
+
+/* List View State: Show list elements, Hide detail elements */
+
+
+body.notice-list-view .notice-list-container {
+    width: 100%;
+    padding: 0;
+}
+
+body.notice-list-view .notice-list-row {
+    display: flex !important;
+    flex-direction: column;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--list-border);
+    font-size: 13px;
+    color: var(--text-primary);
+    height: auto !important;
+}
+
+body.notice-list-view .notice-list-top {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+/* Summary Styling */
+body.notice-list-view .file-summary {
+    width: 100%;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-top: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    /* Show 2 lines max */
+    -webkit-box-orient: vertical;
+}
+
+/* Hide non-text elements in summary */
+body.notice-list-view .file-summary img,
+body.notice-list-view .file-summary iframe,
+body.notice-list-view .file-summary video,
+body.notice-list-view .file-summary table,
+body.notice-list-view .file-summary .container_postbtn,
+body.notice-list-view .file-summary .tt_article_useless_p_margin {
+    display: none !important;
+}
+
+body.notice-list-view .notice-list-row:nth-child(even) {
+    background-color: var(--list-alt-bg);
+}
+
+body.notice-list-view .notice-list-row:hover {
+    background-color: var(--list-active-bg);
+    /* Or hover-bg */
+}
+
+/* Hide detail view in list mode */
+body.notice-list-view .notice-wrapper {
+    display: none !important;
+}
+
+/* Ensure Layout Order */
+body.notice-list-view .notice-view-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hide Like Button (PostBtn) in List View */
+body.notice-list-view .container_postbtn {
+    display: none !important;
+}
+
+
+
+/* Row Content Styling */
+.notice-list-row .file-name a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+    min-width: 0;
+    /* For flex truncation */
+}
+
+.file-icon {
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-title {
+    text-align: left;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.file-category {
+    text-align: left;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.file-summary {
+    color: var(--text-secondary);
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 0.7;
+    flex: 1;
 }
